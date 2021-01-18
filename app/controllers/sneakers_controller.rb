@@ -2,7 +2,7 @@ class SneakersController < ApplicationController
     before_action :set_sneaker, only: [:show, :update, :destroy]
 
     def index
-        @sneakers = sneaker.all
+        @sneakers = Sneaker.all
 
         render json: @sneakers
     end
