@@ -2,37 +2,37 @@ class SneakersController < ApplicationController
     before_action :set_sneaker, only: [:show, :update, :destroy]
 
     def index
-        @sneakers = Sneaker.all
+        sneakers = Sneaker.all
 
-        render json: @sneakers
+        render json: SneakerSerializer.new(sneakers)
     end
 
     def show
 
-        render json: @sneaker
+        render json: SneakerSerializer.new(sneaker)
     end
 
     def create
-        @sneaker = sneaker.create(sneaker_params)
+        sneaker = Sneaker.create(sneaker_params)
 
-        render json: @sneaker
+        render json: SneakerSerializer.new(sneaker)
     end
 
     def update
-        @sneaker.update(sneaker_params)
+        sneaker.update(sneaker_params)
 
-        render json: @sneaker
+        render json: SneakerSerializer.new(sneaker)
     end
 
     def destroy
-        @sneaker.delete
+        sneaker.delete
 
-        render json: {sneakerId: @sneaker.id}
+        render json: {sneakerId: sneaker.id}
     end
 
     private
         def set_sneaker
-            @sneaker = sneaker.find(params[:id])
+            sneaker = Sneaker.find(params[:id])
         end
 
         def sneaker_params
