@@ -2,37 +2,37 @@ class CommentsController < ApplicationController
     before_action :set_comment, only: [:show, :update, :destroy]
 
     def index
-        comments = Comment.all
+        @comments = Comment.all
 
-        render json: CommentSerializer.new(comments)
+        render json: @comments
     end
 
     def show
 
-        render json: CommentSerializer.new(comment)
+        render json: @comment
     end
 
     def create
-        comment = Comment.create(comment_params)
+        @comment = Comment.create(comment_params)
 
-        render json: CommentSerializer.new(comment)
+        render json: @comment
     end
 
     def update
-        comment.update(comment_params)
+        @comment.update(comment_params)
 
-        render json: CommentSerializer.new(comment)
+        render json: @comment
     end
 
     def destroy
-        comment.delete
+        @comment.delete
 
-        render json: {commentId: comment.id}
+        render json: {commentId: @comment.id}
     end
 
     private
         def set_comment
-            comment = Comment.find(params[:id])
+            @comment = Comment.find(params[:id])
         end
 
         def comment_params
