@@ -1,4 +1,4 @@
 class CommentSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   attributes :size, :comment, :sneaker_id
 end

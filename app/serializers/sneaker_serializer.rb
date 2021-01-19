@@ -1,4 +1,4 @@
 class SneakerSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   attributes :colorway, :name, :brand, :price, :image
 end

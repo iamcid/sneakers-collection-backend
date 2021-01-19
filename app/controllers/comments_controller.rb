@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
-    before_action :set_comment, only: [:show, :update, :destroy]
+    # before_action :set_comment, only: [:show, :update, :destroy]
 
     def index
-        @comments = Comment.all
+        comments = Comment.all
 
-        render json: @comments
+        render json: CommentSerializer.new(comments)
     end
 
     def show
@@ -13,9 +13,12 @@ class CommentsController < ApplicationController
     end
 
     def create
-        @comment = Comment.create(comment_params)
-
-        render json: @comment
+        @comment = Comment.new(comment_params)
+        if @comment.save
+            render json: @comment            
+        else
+            render json: {errors: @comment.errors.full_messages}
+        end
     end
 
     def update
