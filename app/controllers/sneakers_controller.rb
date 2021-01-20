@@ -1,5 +1,5 @@
 class SneakersController < ApplicationController
-    before_action :set_sneaker, only: [:show, :update, :destroy]
+    # before_action :set_sneaker, only: [:show, :update, :destroy]
 
     def index
         sneakers = Sneaker.all
@@ -7,36 +7,37 @@ class SneakersController < ApplicationController
         render json: SneakerSerializer.new(sneakers)
     end
 
-    def show
+    # def show
 
-        render json: sneaker
-    end
+    #     render json: sneaker
+    # end
 
     def create
         sneaker = Sneaker.new(sneaker_params)
         if sneaker.save
-            render json: sneaker            
+            render json: SneakerSerializer.new(sneaker), status: :accepted            
         else
             render json: {errors: sneaker.errors.full_messages}
         end
     end
 
-    def update
-        sneaker.update(sneaker_params)
+    # def update
+    #     sneaker.update(sneaker_params)
 
-        render json: @sneaker
-    end
+    #     render json: @sneaker
+    # end
 
     def destroy
-        sneaker.delete
+        sneaker = Sneaker.find(params[:id])
+        sneaker.destroy
 
-        render json: {sneakerId: sneaker.id}
+        # render json: {sneakerId: @sneaker.id}
     end
 
     private
-        def set_sneaker
-            sneaker = Sneaker.find(params[:id])
-        end
+        # def set_sneaker
+        #     @sneaker = Sneaker.find(params[:id])
+        # end
 
         def sneaker_params
             params.require(:sneaker).permit(:colorway, :name, :brand, :price, :image)
