@@ -9,33 +9,33 @@ class SneakersController < ApplicationController
 
     def show
 
-        render json: @sneaker
+        render json: sneaker
     end
 
     def create
-        @sneaker = Sneaker.new(sneaker_params)
-        if @sneaker.save
-            render json: @sneaker            
+        sneaker = Sneaker.new(sneaker_params)
+        if sneaker.save
+            render json: sneaker            
         else
-            render json: {errors: @sneaker.errors.full_messages}
+            render json: {errors: sneaker.errors.full_messages}
         end
     end
 
     def update
-        @sneaker.update(sneaker_params)
+        sneaker.update(sneaker_params)
 
         render json: @sneaker
     end
 
     def destroy
-        @sneaker.delete
+        sneaker.delete
 
-        render json: {sneakerId: @sneaker.id}
+        render json: {sneakerId: sneaker.id}
     end
 
     private
         def set_sneaker
-            @sneaker = Sneaker.find(params[:id])
+            sneaker = Sneaker.find(params[:id])
         end
 
         def sneaker_params

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    # before_action :set_comment, only: [:show, :update, :destroy]
+    before_action :set_comment, only: [:show, :update, :destroy]
 
     def index
         comments = Comment.all
@@ -9,33 +9,33 @@ class CommentsController < ApplicationController
 
     def show
 
-        render json: @comment
+        render json: comment
     end
 
     def create
-        @comment = Comment.new(comment_params)
-        if @comment.save
-            render json: @comment            
+        comment = Comment.new(comment_params)
+        if comment.save
+            render json: CommentSerializer.new(comment)            
         else
-            render json: {errors: @comment.errors.full_messages}
+            render json: {errors: comment.errors.full_messages}
         end
     end
 
     def update
-        @comment.update(comment_params)
+        comment.update(comment_params)
 
-        render json: @comment
+        render json: comment
     end
 
     def destroy
-        @comment.delete
+        comment.delete
 
-        render json: {commentId: @comment.id}
+        render json: {commentId: comment.id}
     end
 
     private
         def set_comment
-            @comment = Comment.find(params[:id])
+            comment = Comment.find(params[:id])
         end
 
         def comment_params
