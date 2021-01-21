@@ -1,16 +1,10 @@
 class SneakersController < ApplicationController
-    # before_action :set_sneaker, only: [:show, :update, :destroy]
 
     def index
         sneakers = Sneaker.all
 
         render json: SneakerSerializer.new(sneakers)
     end
-
-    # def show
-
-    #     render json: sneaker
-    # end
 
     def create
         sneaker = Sneaker.new(sneaker_params)
@@ -21,24 +15,13 @@ class SneakersController < ApplicationController
         end
     end
 
-    # def update
-    #     sneaker.update(sneaker_params)
-
-    #     render json: @sneaker
-    # end
-
     def destroy
         sneaker = Sneaker.find(params[:id])
         sneaker.destroy
-
-        # render json: {sneakerId: @sneaker.id}
     end
 
     private
-        # def set_sneaker
-        #     @sneaker = Sneaker.find(params[:id])
-        # end
-
+    
         def sneaker_params
             params.require(:sneaker).permit(:colorway, :name, :brand, :price, :image)
         end
