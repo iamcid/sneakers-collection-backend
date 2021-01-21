@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_18_055117) do
+ActiveRecord::Schema.define(version: 2021_01_20_235443) do
 
   create_table "comments", force: :cascade do |t|
-    t.float "size"
-    t.string "comment"
+    t.string "message"
     t.integer "sneaker_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

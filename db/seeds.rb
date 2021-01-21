@@ -11,4 +11,4 @@ Comment.destroy_all
 
 Sneaker.create(colorway: "Bred", name: "Yeezy 350", brand: "Adidas", price: 220.00, image: "https://stockx-360.imgix.net/adidas-Yeezy-Boost-350-V2-Core-Black-Red-2017/Images/adidas-Yeezy-Boost-350-V2-Core-Black-Red-2017/Lv2/img01.jpg?auto=format,compress&q=90&updated_at=1606320792&w=1000")
 
-Comment.create(size: 9.5, comment: "Favorite Yeezy", sneaker_id: 1)
+Comment.create(message: "Favorite Yeezy", sneaker_id: 44)
