@@ -8,8 +8,9 @@ class SneakersController < ApplicationController
 
     def create
         sneaker = Sneaker.new(sneaker_params)
+
         if sneaker.save
-            render json: SneakerSerializer.new(sneaker), status: :accepted            
+            render json: SneakerSerializer.new(sneaker)           
         else
             render json: {errors: sneaker.errors.full_messages}
         end
@@ -22,7 +23,7 @@ class SneakersController < ApplicationController
 
     private
     
-        def sneaker_params
-            params.require(:sneaker).permit(:colorway, :name, :brand, :price, :image)
-        end
+    def sneaker_params
+        params.require(:sneaker).permit(:colorway, :name, :brand, :price, :image)
+    end
 end
